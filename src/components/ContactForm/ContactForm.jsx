@@ -13,8 +13,8 @@ class ContactForm extends Component {
     const { name, number } = e.target.elements;
 
     const isCreated = this.props.addContact({
-      name: name.value,
-      number: number.value,
+      name: name.value.trim(),
+      number: number.value.trim(),
     });
 
     if (!isCreated) {
