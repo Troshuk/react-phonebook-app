@@ -11,8 +11,9 @@ class ContactForm extends Component {
     e.preventDefault();
 
     const { name, number } = e.target.elements;
+    const { addContact } = this.props;
 
-    const isCreated = this.props.addContact({
+    const isCreated = addContact({
       name: name.value.trim(),
       number: number.value.trim(),
     });
@@ -28,8 +29,10 @@ class ContactForm extends Component {
   };
 
   handleOnChange = e => {
+    const { name, value } = e.target;
+
     this.setState({
-      [e.target.name]: e.target.value,
+      [name]: value,
     });
   };
 
