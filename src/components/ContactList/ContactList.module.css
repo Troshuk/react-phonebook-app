@@ -1,0 +1,17 @@
+.contactList {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 0;
+}
+
+.contactList li {
+    display: flex;
+    gap: 10px;
+}
+
+.contactList button {
+    border: 1px solid gray;
+    border-radius: 5px;
+    background-color: #fff;
+}
