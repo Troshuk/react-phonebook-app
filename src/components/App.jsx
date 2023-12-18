@@ -48,7 +48,7 @@ export class App extends Component {
   };
 
   render() {
-    const { contacts, filter, name, number } = this.state;
+    const { contacts, filter } = this.state;
 
     const filteredContacts = contacts.filter(({ name }) =>
       name.toLowerCase().includes(filter.toLowerCase())
@@ -57,13 +57,7 @@ export class App extends Component {
     return (
       <div>
         <Section title="Phonebook">
-          <ContactForm
-            name={name}
-            number={number}
-            handleOnChange={this.handleOnChange}
-            handleSubmit={this.handleSubmit}
-            addContact={this.addContact}
-          />
+          <ContactForm addContact={this.addContact} />
         </Section>
 
         <Section title="Contacts">
