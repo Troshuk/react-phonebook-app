@@ -4,12 +4,29 @@ import { nanoid } from 'nanoid';
 import { Filter } from './Filter/Filter';
 import { ContactList } from './ContactList/ContactList';
 import { ContactForm } from './ContactForm/ContactForm';
+import { Storage } from 'services';
 
 export class App extends Component {
   state = {
     contacts: [],
     filter: '',
   };
+
+  componentDidMount() {
+    const contacts = Storage.get(Storage.CONTACTS_KEY);
+
+    if (contacts) {
+      this.setState({ contacts });
+    }
+  }
+
+  componentDidUpdate(_, prevState) {
+    const { contacts } = this.state;
+
+    if (contacts !== prevState.contacts) {
+      Storage.set(Storage.CONTACTS_KEY, contacts);
+    }
+  }
 
   handleOnChange = e => {
     const { name, value } = e.target;
