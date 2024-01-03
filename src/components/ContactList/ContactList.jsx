@@ -1,6 +1,6 @@
 import css from './ContactList.module.css';
 
-const ContactList = ({ contacts, removeContact }) => {
+export const ContactList = ({ contacts, removeContact }) => {
   return (
     <ul className={css.contactList}>
       {contacts?.map(({ id, name, number }) => (
@@ -16,5 +16,3 @@ const ContactList = ({ contacts, removeContact }) => {
     </ul>
   );
 };
-
-export { ContactList };

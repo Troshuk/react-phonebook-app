@@ -1,6 +1,6 @@
 import css from './Section.module.css';
 
-const Section = ({ title, children }) => {
+export const Section = ({ title, children }) => {
   return (
     <section className={css.section}>
       {title && <h2>{title}</h2>}
@@ -8,5 +8,3 @@ const Section = ({ title, children }) => {
     </section>
   );
 };
-
-export { Section };
