@@ -1,17 +1,37 @@
-import css from './ContactForm.module.css';
+import { useDispatch, useSelector } from 'react-redux';
 
-export const ContactForm = ({ addContact }) => {
+import { getContacts } from 'store/selectors';
+
+import css from './ContactForm.module.css';
+import { createContact } from 'store/reducers';
+
+export const ContactForm = () => {
+  const dispatch = useDispatch();
+  const contacts = useSelector(getContacts);
+
   const handleSubmit = e => {
     e.preventDefault();
 
     const { name, number } = e.target.elements;
 
-    const isCreated = addContact({
+    const contact = {
       name: name.value.trim(),
       number: number.value.trim(),
-    });
+    };
 
-    if (isCreated) e.target.reset();
+    const contactAlreadyExists = contacts?.find(
+      ({ name }) => name.toLowerCase() === contact.name.toLowerCase()
+    );
+
+    if (contactAlreadyExists) {
+      alert(`${contact.name} is already in contacts`);
+
+      return;
+    }
+
+    e.target.reset();
+
+    dispatch(createContact(contact));
   };
 
   return (

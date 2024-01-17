@@ -1,6 +1,16 @@
+import { useDispatch, useSelector } from 'react-redux';
+
+import { getFilter } from 'store/selectors';
+import { setFilter } from 'store/reducers';
+
 import css from './Filter.module.css';
 
-export const Filter = ({ filter, handleOnChange }) => {
+export const Filter = () => {
+  const dispatch = useDispatch();
+  const filter = useSelector(getFilter);
+
+  const handleOnChange = ({ target: { value } }) => dispatch(setFilter(value));
+
   return (
     <div className={css.filter}>
       <label htmlFor="filter">Find contacts by name</label>
