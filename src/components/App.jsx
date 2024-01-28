@@ -1,7 +1,4 @@
-import { Section } from './Section/Section';
-import { Filter } from './Filter/Filter';
-import { ContactList } from './ContactList/ContactList';
-import { ContactForm } from './ContactForm/ContactForm';
+import { ContactForm, Section, Filter, ContactList } from 'components';
 
 export const App = () => {
   return (
