@@ -27,11 +27,9 @@ export const ContactForm = () => {
       alert(`${contact.name} is already in contacts`);
 
       return;
-    }
+    } 
 
-    e.target.reset();
-
-    dispatch(createContact(contact));
+    dispatch(createContact(contact)).then(() => e.target.reset());
   };
 
   return (

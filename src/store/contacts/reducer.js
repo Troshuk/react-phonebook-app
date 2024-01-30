@@ -9,21 +9,29 @@ export const contactsSlice = createSlice({
     builder
       // Get contacts
       .addCase(fetchContacts.fulfilled, (state, { payload }) => {
-        state.isLoading = false;
         state.items = payload;
       })
 
       // Create contact
       .addCase(createContact.fulfilled, (state, { payload }) => {
-        state.isLoading = false;
         state.items.push(payload);
       })
 
       // Delete contact
       .addCase(deleteContact.fulfilled, (state, { payload }) => {
-        state.isLoading = false;
         state.items = state.items.filter(({ id }) => id !== payload.id);
       })
+
+      .addMatcher(
+        isAnyOf(
+          fetchContacts.fulfilled,
+          createContact.fulfilled,
+          deleteContact.fulfilled
+        ),
+        state => {
+          state.isLoading = false;
+        }
+      )
 
       // Handle Pending requests
       .addMatcher(
