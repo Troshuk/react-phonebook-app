@@ -2,9 +2,22 @@ import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 
 import { createContact, deleteContact, fetchContacts } from './operations';
 
+const getStateKey = (type, meta) => type.replace(`/${meta.requestStatus}`, '');
+
 export const contactsSlice = createSlice({
   name: 'contacts',
-  initialState: { items: [], isLoading: false, error: null },
+  initialState: {
+    items: [],
+    isLoading: false,
+    error: null,
+    ...[createContact, deleteContact].reduce(
+      (acc, operation) => ({
+        ...acc,
+        [operation.typePrefix]: { isLoading: false, error: null, key: null },
+      }),
+      {}
+    ),
+  },
   extraReducers: builder => {
     builder
       // Get contacts
@@ -22,27 +35,27 @@ export const contactsSlice = createSlice({
         state.items = state.items.filter(({ id }) => id !== payload.id);
       })
 
+      // Handle fulfilled requests status
       .addMatcher(
-        isAnyOf(
-          fetchContacts.fulfilled,
-          createContact.fulfilled,
-          deleteContact.fulfilled
-        ),
-        state => {
-          state.isLoading = false;
+        isAnyOf(createContact.fulfilled, deleteContact.fulfilled),
+        (state, { type, meta }) => {
+          state[getStateKey(type, meta)] = {
+            isLoading: false,
+            error: null,
+            key: null,
+          };
         }
       )
 
       // Handle Pending requests
       .addMatcher(
-        isAnyOf(
-          fetchContacts.pending,
-          createContact.pending,
-          deleteContact.pending
-        ),
-        state => {
-          state.isLoading = true;
-          state.error = null;
+        isAnyOf(createContact.pending, deleteContact.pending),
+        (state, { type, meta }) => {
+          state[getStateKey(type, meta)] = {
+            isLoading: true,
+            error: null,
+            key: meta.arg ?? null,
+          };
         }
       )
 
@@ -53,9 +66,12 @@ export const contactsSlice = createSlice({
           createContact.rejected,
           deleteContact.rejected
         ),
-        (state, { error, payload }) => {
-          state.isLoading = false;
-          state.error = payload ?? error.message;
+        (state, { error, payload, type, meta }) => {
+          state[getStateKey(type, meta)] = {
+            isLoading: false,
+            error: payload ?? error.message,
+            key: null,
+          };
         }
       );
   },

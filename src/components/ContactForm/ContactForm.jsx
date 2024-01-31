@@ -1,13 +1,15 @@
 import { useDispatch, useSelector } from 'react-redux';
 
-import { contactsSelector } from 'store/selectors';
+import { contactsSelector, createContactSelector } from 'store/selectors';
 import { createContact } from 'store/operations';
 
 import css from './ContactForm.module.css';
+import { notify, notifyApi } from 'notify.js';
 
 export const ContactForm = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(contactsSelector);
+  const { isLoading } = useSelector(createContactSelector);
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -24,12 +26,17 @@ export const ContactForm = () => {
     );
 
     if (contactAlreadyExists) {
-      alert(`${contact.name} is already in contacts`);
+      notify(`${contact.name} is already in contacts`, 'error');
 
       return;
-    } 
+    }
 
-    dispatch(createContact(contact)).then(() => e.target.reset());
+    notifyApi(
+      dispatch(createContact(contact))
+        .unwrap()
+        .then(() => e.target.reset()),
+      `Creating ${contact.name}`
+    );
   };
 
   return (
@@ -38,7 +45,9 @@ export const ContactForm = () => {
       <input type="text" name="name" required />
       <label htmlFor="phone">Phone number</label>
       <input type="tel" name="phone" required />
-      <button>Add contact</button>
+      <button disabled={isLoading}>
+        {isLoading ? 'Creating...' : 'Add contact'}
+      </button>
     </form>
   );
 };

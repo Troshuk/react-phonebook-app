@@ -1,4 +1,5 @@
 import { ContactForm, Section, Filter, ContactList } from 'components';
+import { ToastContainer } from 'react-toastify';
 
 export const App = () => {
   return (
@@ -11,6 +12,7 @@ export const App = () => {
         <Filter />
         <ContactList />
       </Section>
+      <ToastContainer />
     </div>
   );
 };
