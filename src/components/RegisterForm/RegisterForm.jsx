@@ -38,16 +38,11 @@ export const RegisterForm = () => {
       <form className={css.form} onSubmit={handleSubmit}>
         <label className={css.label}>
           <span>Name:</span>
-          <input type="text" name="name" defaultValue="Redux Guy" required />
+          <input type="text" name="name" required />
         </label>
         <label className={css.label}>
           <span>Email:</span>
-          <input
-            type="email"
-            name="email"
-            defaultValue="redux.guy@gmail.com"
-            required
-          />
+          <input type="email" name="email" required />
         </label>
         <label className={css.label}>
           <span>Password:</span>
