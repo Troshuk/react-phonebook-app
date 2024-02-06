@@ -1,11 +1,57 @@
-.form {
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-    border: 1px dashed green;
-    gap: 10px;
+/* ContactForm.module.css */
+
+.contactForm {
+    margin-bottom: 20px;
+    text-align: center;
 }
 
-.form button {
-    margin-top: 10px;
+.toggleButton {
+    margin-bottom: 30px;
+    padding: 0.8rem 1.5rem;
+    cursor: pointer;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    color: white;
+}
+
+.toggleButton:hover {
+    background-color: #0056b3;
+}
+
+.formContainer {
+    transition: height 0.3s ease-in-out;
+    overflow: hidden;
+}
+
+.collapsed {
+    height: 0;
+}
+
+.contactForm form {
+    display: flex;
+    flex-direction: column;
+}
+
+.contactForm label {
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.contactForm input {
+    padding: 8px;
+    margin-bottom: 10px;
+}
+
+.contactForm button {
+    padding: 0.8rem 1.5rem;
+    cursor: pointer;
+    background-color: #28a745;
+    border: none;
+    border-radius: 4px;
+    color: white;
+}
+
+.contactForm button:hover {
+    background-color: #218838;
 }

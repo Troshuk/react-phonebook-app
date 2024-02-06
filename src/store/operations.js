@@ -1,1 +1,2 @@
-export * from './contacts/operations';
+export * from 'store/auth/operations';
+export * from 'store/contacts/operations';

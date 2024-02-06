@@ -6,17 +6,16 @@ import { fetchContacts } from 'store/operations';
 import { ContactItem } from 'components';
 
 import css from './ContactList.module.css';
-import { notifyApi } from 'notify';
+import { notify } from 'notify';
 
 export const ContactList = () => {
   const dispatch = useDispatch();
   const filteredContacts = useSelector(filteredContactsSelector);
 
   useEffect(() => {
-    notifyApi(
-      dispatch(fetchContacts()).unwrap(),
-      'Retriving your contacts book'
-    );
+    dispatch(fetchContacts())
+      .unwrap()
+      .catch(() => notify('Retriving your contacts book has failed', 'error'));
   }, [dispatch]);
 
   return (

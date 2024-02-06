@@ -1,2 +1,3 @@
-export * from './contacts/selector';
-export * from './filter/selector';
+export * from './auth/selectors';
+export * from './contacts/selectors';
+export * from './filter/selectors';

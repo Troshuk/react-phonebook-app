@@ -1,17 +1,7 @@
 .contactList {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 20px;
+    list-style: none;
     padding: 0;
-}
-
-.contactList li {
-    display: flex;
-    gap: 10px;
-}
-
-.contactList button {
-    border: 1px solid gray;
-    border-radius: 5px;
-    background-color: #fff;
 }
