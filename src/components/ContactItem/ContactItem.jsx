@@ -1,13 +1,14 @@
 import { notifyApi } from 'notify';
 import { useDispatch, useSelector } from 'react-redux';
+import { FaTrash } from 'react-icons/fa';
+import { IoIosCall, IoMdPerson } from 'react-icons/io';
+
+import { ContentLoader } from 'components';
 
 import { deleteContact } from 'store/operations';
 import { deleteContactSelector } from 'store/selectors';
 
-import { FaTrash } from 'react-icons/fa';
 import css from './ContactItem.module.css';
-import { ContentLoader } from 'components';
-import { IoIosCall, IoMdPerson } from 'react-icons/io';
 
 export const ContactItem = ({ contact: { id, name, number } }) => {
   const dispatch = useDispatch();

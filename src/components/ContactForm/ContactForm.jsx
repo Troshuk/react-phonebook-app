@@ -1,13 +1,14 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
+import { AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai';
+
+import { ContentLoader } from 'components';
 
 import { contactsSelector, createContactSelector } from 'store/selectors';
 import { createContact } from 'store/operations';
+import { notify, notifyApi } from 'notify.js';
 
 import css from './ContactForm.module.css';
-import { notify, notifyApi } from 'notify.js';
-import { useState } from 'react';
-import { AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai';
-import { ContentLoader } from 'components';
 
 export const ContactForm = () => {
   const dispatch = useDispatch();

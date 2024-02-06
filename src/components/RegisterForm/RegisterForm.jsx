@@ -1,14 +1,15 @@
 import { NavLink } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { FaUserPlus } from 'react-icons/fa';
+
+import { ContentLoader } from 'components';
 
 import { LOGIN_ROUTE } from 'routes/routes';
-
-import css from './RegisterForm.module.css';
-import { useDispatch, useSelector } from 'react-redux';
 import { notifyApi } from 'notify';
 import { signUp } from 'store/operations';
 import { signUpSelector } from 'store/selectors';
-import { FaUserPlus } from 'react-icons/fa';
-import { ContentLoader } from 'components';
+
+import css from './RegisterForm.module.css';
 
 export const RegisterForm = () => {
   const dispatch = useDispatch();

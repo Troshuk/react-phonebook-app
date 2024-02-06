@@ -4,9 +4,9 @@ import { useEffect } from 'react';
 import { filteredContactsSelector } from 'store/selectors';
 import { fetchContacts } from 'store/operations';
 import { ContactItem } from 'components';
+import { notify } from 'notify';
 
 import css from './ContactList.module.css';
-import { notify } from 'notify';
 
 export const ContactList = () => {
   const dispatch = useDispatch();

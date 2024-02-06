@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   FaBookOpen,
   FaHome,
@@ -8,17 +9,17 @@ import {
 } from 'react-icons/fa';
 import { IoMdPerson } from 'react-icons/io';
 
-import css from './NavidationBar.module.css';
 import {
   CONTACTS_ROUTE,
   HOME_ROUTE,
   LOGIN_ROUTE,
   SIGN_UP_ROUTE,
 } from 'routes/routes';
-import { useDispatch, useSelector } from 'react-redux';
 import { AuthReducerSelector } from 'store/selectors';
 import { notifyApi } from 'notify';
 import { logOut } from 'store/operations';
+
+import css from './NavidationBar.module.css';
 
 export const NavidationBar = () => {
   const dispatch = useDispatch();

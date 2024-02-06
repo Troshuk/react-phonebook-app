@@ -1,14 +1,15 @@
 import { NavLink } from 'react-router-dom';
 import { FaSignInAlt } from 'react-icons/fa';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { ContentLoader } from 'components';
 
 import { SIGN_UP_ROUTE } from 'routes/routes';
-
-import css from './LoginFrom.module.css';
-import { useDispatch, useSelector } from 'react-redux';
 import { logInSelector } from 'store/selectors';
 import { notifyApi } from 'notify';
 import { logIn } from 'store/operations';
-import { ContentLoader } from 'components';
+
+import css from './LoginFrom.module.css';
 
 export const LoginFrom = () => {
   const dispatch = useDispatch();

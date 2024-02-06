@@ -7,8 +7,8 @@ export const Loader = props => {
       width="800"
       height={300}
       viewBox="0 0 400 160"
-      backgroundColor="#333" // Change to a less transparent color
-      foregroundColor="#555" // Change to a less transparent color
+      backgroundColor="#333"
+      foregroundColor="#555"
       {...props}
     >
       <rect x="20" y="8" rx="5" ry="5" width="60%" height="10" />

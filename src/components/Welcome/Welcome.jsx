@@ -1,11 +1,11 @@
 import { NavLink } from 'react-router-dom';
 import { FaBookOpen, FaSignInAlt, FaUserPlus } from 'react-icons/fa';
+import { useSelector } from 'react-redux';
 
 import { SIGN_UP_ROUTE, LOGIN_ROUTE, CONTACTS_ROUTE } from 'routes/routes';
+import { isLoggedInSelector } from 'store/selectors';
 
 import css from './Welcome.module.css';
-import { useSelector } from 'react-redux';
-import { isLoggedInSelector } from 'store/selectors';
 
 export const Welcome = () => {
   const isLoggedIn = useSelector(isLoggedInSelector);
