@@ -38,21 +38,11 @@ export const LoginFrom = () => {
       <form className={css.form} onSubmit={handleSubmit}>
         <label className={css.label}>
           <span>Email:</span>
-          <input
-            type="email"
-            name="email"
-            defaultValue="redux.guy@gmail.com"
-            required
-          />
+          <input type="email" name="email" required />
         </label>
         <label className={css.label}>
           <span>Password:</span>
-          <input
-            type="password"
-            name="password"
-            defaultValue="Qwerty1"
-            required
-          />
+          <input type="password" name="password" required />
         </label>
         <button type="submit" className={css.button} disabled={isLoading}>
           Log In &nbsp; {isLoading ? <ContentLoader /> : <FaSignInAlt />}
